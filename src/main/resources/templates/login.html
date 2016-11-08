@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="base :: header"></head>
+	
+	<body>
+		<h1>Login</h1>
+		<form method="post">
+		  <table>
+		    <tr>
+		      <td><label>Username</label></td>
+		      <td>
+		          <input name="username" type="text"></input>
+		      </td>
+		    </tr>
+		    <tr>
+		      <td><label>Password</label></td>
+		      <td>
+		          <input name="password" type="password"></input>
+		      </td>
+		    </tr>
+		  </table>
+		  <div class="error">{{error}}</div>
+		  <input type="submit"></input>
+		</form>
+	</body>
+	
+	<div th:replace="base :: footer"></div>
+	
+</html>

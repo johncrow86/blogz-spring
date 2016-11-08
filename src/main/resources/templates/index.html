@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="base :: header"></head>
+
+	<body>
+		<h1>blog users!</h1>
+		
+		<th:block th:each="user : ${userList}">
+			<ul th:text=${user}></ul>
+		</th:block>
+	</body>
+	
+</html>

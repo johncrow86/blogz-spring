@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="base :: header"></head>
+
+	<body>
+		<h1>Signup</h1>
+		<form method="post">
+		    <table>
+		        <tr>
+		            <td><label for="username">Username</label></td>
+		            <td>
+		                <input name="username" type="text" value="{{ username }}"></input>
+		                <span class="error">{{ errors.username_error }}</span>
+		            </td>
+		        </tr>
+		        <tr>
+		            <td><label for="password">Password</label></td>
+		            <td>
+		                <input name="password" type="password"></input>
+		                <span class="error">{{ errors.password_error }}</span>
+		            </td>
+		        </tr>
+		        <tr>
+		            <td><label for="verify">Verify Password</label></td>
+		            <td>
+		                <input name="verify" type="password"></input>
+		                <span class="error">{{ errors.verify_error }}</span>
+		            </td>
+		        </tr>
+		        <tr>
+		            <td><label for="email">Email (optional)</label></td>
+		            <td>
+		                <input name="email" type="email" value="{{ email }}"></input>
+		                <span class="error">{{ errors.email_error }}</span>
+		            </td>
+		        </tr>
+		    </table>
+		    <input type="submit"></input>
+		</form>
+	</body>
+	
+</html>
