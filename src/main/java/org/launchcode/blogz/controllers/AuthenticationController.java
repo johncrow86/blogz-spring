@@ -17,6 +17,11 @@ public class AuthenticationController {
 		return "login";
 	}
 	
+	@RequestMapping(value = "/loggin", method = RequestMethod.POST)
+	public String loginPost() {
+		
+	}
+	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signupForm() {
 		return "signup";
@@ -31,10 +36,30 @@ public class AuthenticationController {
 		String email = request.getParameter("email");
 		
 		boolean hasError = false;
+		String error = "";
 		
-		if (!(User.isValidUsername(username)))
+		if (!(User.isValidUsername(username))) {
 			hasError = true;
-			
+			error = "Invalid username";
+		} else if (User.doesExist(username)) {
+			hasError = true;
+			error = "User already exists";
+		} else if (!(password.equals(verify))) {
+			hasError = true;
+			error = "Passwords do not match";
+		}
+		
+		if (!(hasError)) {
+			new User(username, password);
+		}
+		
+		return "redirect:signup";
+		
+	}
+	
+	@RequestMapping(value = "/success", method = RequestMethod.GET)
+	public String success() {
+		return "success";
 	}
 	
 }

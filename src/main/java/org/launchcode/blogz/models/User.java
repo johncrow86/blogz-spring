@@ -20,7 +20,7 @@ public class User extends Entity {
 	}
 	
 	
-	public String hashPassword(String password) {
+	private String hashPassword(String password) {
 		return password;
 	}
 	
@@ -28,11 +28,19 @@ public class User extends Entity {
 		return username.matches("[a-zA-Z][a-zA-Z0-9_-]{4,11}");
 	}
 	
+	public static boolean doesExist(String username) {
+		for (User user : users) {
+			if (username.equals(user.username))
+				return true;
+		}
+		return false;
+	}
+	
 	public boolean isValidPassword(String password) {
 		return (hashPassword(password) == passwordHash);
 	}
 	
-	public static void generateList() {
+	public static void printList() {
 		for (User user : users)
 			System.out.println("Username: " + user.username);
 	}
