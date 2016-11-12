@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="base :: header"></head>
+	
+	<body>
+		<h1>New Post</h1>
+		<form method="post">
+		    <label>
+		        <div>Title</div>
+		        <input type="text" name="title"></input>
+		    </label>
+		    <label>
+		        <div>Post</div>
+		        <textarea name="body"></textarea>
+		    </label>
+		    <div><input type="submit"></input></div>
+		</form>
+	</body>
+	
+	<div th:replace="base :: footer"></div>
+	
+</html>

@@ -1,6 +1,8 @@
 package org.launchcode.blogz.controllers;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.launchcode.blogz.models.User;
 import org.springframework.stereotype.Controller;
@@ -11,15 +13,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class AuthenticationController {
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String main() {
+		return "redirect:login";
+	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/loggin", method = RequestMethod.POST)
-	public String loginPost() {
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String loginPost(HttpServletRequest request, HttpServletResponse response) {
 		
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
+		if (User.doesExist(username)) {
+			/*
+			 * Get User
+			 */
+		}
+		
+		/*
+		 * Add Cookie Functionality
+		 */
+		Cookie myCookie = new Cookie("name", "val");
+		response.addCookie(myCookie);
 	}
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
@@ -28,7 +49,7 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String signup(HttpServletRequest request, Model model) {
+	public String signupPost(HttpServletRequest request, Model model) {
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -49,17 +70,11 @@ public class AuthenticationController {
 			error = "Passwords do not match";
 		}
 		
-		if (!(hasError)) {
+		if (!(hasError))
 			new User(username, password);
-		}
 		
 		return "redirect:signup";
 		
-	}
-	
-	@RequestMapping(value = "/success", method = RequestMethod.GET)
-	public String success() {
-		return "success";
 	}
 	
 }
